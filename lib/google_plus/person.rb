@@ -33,6 +33,13 @@ module GooglePlus
     def list_activities(params = {})
       GooglePlus::Activity.for_person(id, params)
     end
+    
+    # List all the people whi this person has added to one or more circles. Limited to circles
+    # the person has made visible to the requesting app. Does not return circle information.
+    def self.list(user_id, collection = 'public', params = {})
+      data = make_request(:get, "people/#{user_id}/people/#{collection}", params)
+      GooglePlus::Cursor.new(self, :get, 'people', params)
+    end
 
     # Load a new instance from an attributes hash
     # Useful if you have the underlying response data for an object - Generally, what you
