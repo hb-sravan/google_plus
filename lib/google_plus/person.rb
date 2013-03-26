@@ -34,12 +34,12 @@ module GooglePlus
       GooglePlus::Activity.for_person(id, params)
     end
     
-    # List all the people whi this person has added to one or more circles. Limited to circles
+    # List all the people who this person has added to one or more circles. Limited to circles
     # the person has made visible to the requesting app. Does not return circle information.
-    def self.list(user_id, params = {})
-      collection = params[:collection].nil? ? 'visible' : params[:collection]
-      data = make_request(:get, "people/#{user_id}/people/#{collection}", params)
-      GooglePlus::Cursor.new(self, :get, 'people', params)
+    def self.list_friends(user_id, params = {})
+      collection = params[:collection] || 'visible'
+      resource = "people/#{user_id}/people/#{collection}"
+      GooglePlus::Cursor.new(self, :get, resource, params)
     end
 
     # Load a new instance from an attributes hash
