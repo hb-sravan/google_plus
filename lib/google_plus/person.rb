@@ -17,6 +17,11 @@ module GooglePlus
       Person.new(JSON.parse(data)) if data
     end
 
+    # Get a person's email address (requires scope of https://www.googleapis.com/auth/userinfo.email)
+    def self.get_email(user_id, params = {})
+      data = make_request(:get, "userinfo", params)
+    end
+    
     # Search for a person
     # @param [String] query The query string to search for
     # @option params [Symbol] :key A different API key to use for this request

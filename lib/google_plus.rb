@@ -8,6 +8,7 @@ module GooglePlus
   autoload :Comment,          'google_plus/comment'
   autoload :Cursor,           'google_plus/cursor'
   autoload :Entity,           'google_plus/entity'
+  autoload :Moment,           'google_plus/moment'
   autoload :Person,           'google_plus/person'
   autoload :Resource,         'google_plus/resource'
 
